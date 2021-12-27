@@ -20,18 +20,18 @@ function deal(inputs) {
   var num = parseInt(input);
   var numStr = "";
   var beichu = 2;
-  while (num !== 1) {
-    while (beichu <= num) {
-      if (num % beichu === 0) {
-        numStr += beichu + " ";
-        num = num / beichu;
-        break;
-      }
+  var sqrtNum = Math.sqrt(num);
+  while (beichu <= sqrtNum || num !== 1) {
+    var div = num % beichu;
+    if (div === 0) {
+      numStr += beichu + " ";
+      num = num / beichu;
+    } else {
       beichu++;
     }
   }
   console.log(numStr);
 }
 
-var ss = ["180"];
+var ss = ["2000000014"];
 deal(ss);
