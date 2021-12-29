@@ -44,5 +44,4 @@ function algorithmExe(inputArr) {
   }
   console.log(outStrs.join(""));
 }
-algorithmExe(["4"]);
 process.exit();
