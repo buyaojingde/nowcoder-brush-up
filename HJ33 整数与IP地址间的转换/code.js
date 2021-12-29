@@ -24,11 +24,15 @@ function algorithmExe(inputs) {
   }
   console.log(outIp10);
   var outIp = [];
+  var chu = 256;
   for (let index = 0; index < 4; index++) {
-    var chu = Math.pow(256,i)；
-    outIp.push()
+    var re = ip10 % chu;
+    ip10 = Math.floor(ip10 / chu);
+    outIp.push(re);
   }
-/ var testStr = ["ABBA"];
+  console.log(outIp.reverse().join("."));
+}
+var testStr = ["ABBA"];
 var testStr1 = ["10.0.3.193", "167969729"];
 // var testStr2 = ["12HHHHA"];
 // var bland = addBlank(testStr.split(""));
