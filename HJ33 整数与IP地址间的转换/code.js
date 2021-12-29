@@ -32,13 +32,6 @@ function algorithmExe(inputs) {
   }
   console.log(outIp.reverse().join("."));
 }
-var testStr = ["ABBA"];
 var testStr1 = ["10.0.3.193", "167969729"];
-// var testStr2 = ["12HHHHA"];
-// var bland = addBlank(testStr.split(""));
-// console.log(bland);
-
-// algorithmExe(testStr);
 algorithmExe(testStr1);
-// algorithmExe(testStr2);
 process.exit();
