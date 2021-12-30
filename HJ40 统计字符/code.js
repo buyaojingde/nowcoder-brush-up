@@ -1,4 +1,3 @@
-const { checkPrime } = require("crypto");
 var readLine = require("readline");
 rl = readLine.createInterface({
   input: process.stdin,
