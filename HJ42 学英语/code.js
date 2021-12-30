@@ -54,46 +54,72 @@ var ranges = ["hundred", "thousand", "million", "billion"];
 function algorithmExe(inputArr) {
   var numStr = inputArr[0].split("");
   var num = Number(inputArr[0]);
-  console.log(hundredNum(num));
+  var numLength = numStr.length;
+  var outStr = "";
+  var bi = Math.floor(num / 1000000000);
+  if (bi > 0) {
+    outStr = hundredNum(bi) + " billion ";
+  }
+  num = num - bi * 1000000000;
+  var mi = Math.floor(num / 1000000);
+  if (mi > 0) {
+    outStr = outStr + hundredNum(mi) + " million ";
+  }
+
+  num = num - mi * 1000000;
+  var th = Math.floor(num / 1000);
+  if (th > 0) {
+    outStr = outStr + hundredNum(th) + " thousand ";
+  }
+  num = num - th * 1000;
+  outStr = outStr + hundredNum(num);
+  console.log(outStr);
 }
 
 function hundredNum(num) {
-  var useTens = false;
-  var outStr = [];
-  for (let i = 1; i <= 3; i++) {
-    var res1 = num % Math.pow(10, i);
-    var res = res1 / Math.pow(10, i - 1);
-    num = num - res * Math.pow(10, i - 1);
-    if (i === 1) {
-      if (res !== 0) {
-        outStr.push(ones[res]);
-      } else {
-        useTens = true;
-      }
+  if (num > 999) return;
+  var outStr = "";
+  var hu = Math.floor(num / 100);
+  var hasHu = false;
+  if (hu > 0) {
+    outStr = ones[hu] + " hundred ";
+    hasHu = true;
+  }
+  num = num - hu * 100;
+  var shi = Math.floor(num / 10);
+  if (shi > 0) {
+    if (hasHu) {
+      outStr = outStr + "and ";
     }
-    if (i === 2) {
-      if (res !== 0) {
-        if (useTens) {
-          outStr.push(tens[res]);
-        } else {
-          outStr.push(twieties[res]);
-        }
-      } else {
+    if (shi === 1) {
+      num = num - 10;
+      outStr = outStr + tens[num];
+      return outStr;
+    } else {
+      num = num - shi * 10;
+      outStr = outStr + twieties[shi];
+      if (num > 0) {
+        outStr += " " + ones[num];
+        return outStr;
       }
-    }
-    if (i === 3) {
-      if (res !== 0) {
-        outStr.length > 0 && outStr.push("and");
-        outStr.push("hundred");
-        outStr.push(ones[res]);
-      }
+      return outStr;
     }
   }
-  return outStr.reverse().join(" ");
+  if (num > 0) {
+    if (hasHu) {
+      outStr += "and " + ones[num];
+      return outStr;
+    }
+    return ones[num];
+  }
+  return outStr;
 }
 
-algorithmExe(["123"]);
-algorithmExe(["100"]);
-algorithmExe(["101"]);
+// algorithmExe(["1652510"]);
+// algorithmExe(["100"]);
+// algorithmExe(["101"]);
+// algorithmExe(["60830"]);
+// algorithmExe(["110"]);
+algorithmExe(["1403523"]);
 
 process.exit();
