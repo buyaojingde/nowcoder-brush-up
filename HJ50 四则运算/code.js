@@ -110,30 +110,28 @@ function calcStr(strNumArr) {
   return calcedStr;
 }
 function algorithmExe(inputArr) {
-  const inStr = inputArr[0];
-  // 将字符串变成数组
-  var fuhaoStr = "+-*/{}[]()";
-  var inArr = [inStr];
-  for (let i = 0; i < fuhaoStr.length; i++) {
-    const element = fuhaoStr[i];
-    var tmp = [];
-    for (let index = 0; index < inArr.length; index++) {
-      var ele = inArr[index];
-      if(ele.length<2){
-        tmp.push(ele);
-        continue;
-      } 
-      var words = ele.split(element);
-      
-      for (let j = 1; j < words.length; j++) {
-        words.splice(j, 0, element);
-        j++;
+  const inStr = inputArr[0].split("");
+  // 数字被拆分的，合并一下
+  var newInArr = [];
+  for (let i = 0; i < inStr.length; i++) {
+    const element = inStr[i];
+    if (newInArr.length > 0) {
+      var last = newInArr[newInArr.length - 1];
+      if (last.charCodeAt() >= 48 && last.charCodeAt() <= 57) {
+        if (element.charCodeAt() >= 48 && element.charCodeAt() <= 57) {
+          newInArr[newInArr.length - 1] = last + element;
+        }else{
+          newInArr.push(element);
+        }
+      }else{
+        newInArr.push(element);
       }
-      tmp.push(...words);
+    }else{
+      newInArr.push(element);
     }
-    inArr = tmp;
   }
-  const calcResult = calcStr(inArr);
+
+  const calcResult = calcStr(newInArr);
   console.log(calcResult);
 }
 var testStr = "3+2*{1+2*[-4/(8-6)+7]}";
