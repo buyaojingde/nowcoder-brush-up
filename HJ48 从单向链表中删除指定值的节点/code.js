@@ -52,9 +52,13 @@ function algorithmExe(inputArr) {
       }
       lastNode = lastNode.next;
     }
-    var delNode = lastNode.next;
-    var delNext = delNode.next;
-    lastNode.next = delNext;
+    if(lastNode){
+      var delNode = lastNode.next;
+      var delNext = delNode.next;
+      lastNode.next = delNext;
+    }else{
+      
+    }
   }
   var logNode = head;
   var nodeArr = [];
