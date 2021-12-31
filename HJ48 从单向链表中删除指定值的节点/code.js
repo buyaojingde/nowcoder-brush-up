@@ -35,30 +35,30 @@ function algorithmExe(inputArr) {
       currentNode1.next = nextNode;
     }
   }
-  if (delNodeNum === head.value) {
-    var headNex = head.next;
-    if (!headNex) {
-      console.log(null);
-      return;
-    }
-    head.next = null;
-    head = headNex;
-  } else {
-    var lastNode = head;
-    while (lastNode.next.value !== delNodeNum) {
-      if (!lastNode.next) {
-        lastNode = null;
-        break;
+  var lastNode = null;
+  var currentDelNode = head;
+  while (currentDelNode !== null) {
+    if (currentDelNode.value === delNodeNum) {
+      if (lastNode === null) {
+        var headNex = currentDelNode.next;
+        head = headNex;
+        currentDelNode.next = null;
+        currentDelNode = head;
+      } else {
+        var delNode = currentDelNode;
+        var delNext = delNode.next;
+        lastNode.next = delNext;
+        delNode.next = null;
+        currentDelNode = delNext;
       }
-      lastNode = lastNode.next;
+    } else {
+      lastNode = currentDelNode;
+      currentDelNode = currentDelNode.next;
     }
-    if(lastNode){
-      var delNode = lastNode.next;
-      var delNext = delNode.next;
-      lastNode.next = delNext;
-    }else{
-      
-    }
+  }
+
+  if (!head) {
+    console.log(null);
   }
   var logNode = head;
   var nodeArr = [];
@@ -68,5 +68,6 @@ function algorithmExe(inputArr) {
   }
   console.log(nodeArr.join(" "));
 }
-algorithmExe(["5 2 3 2 4 3 5 2 1 4 3"]);
+// algorithmExe(["5 2 3 2 4 3 5 2 1 4 3"]);
+algorithmExe(["1 2 2"]);
 process.exit();
