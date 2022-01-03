@@ -15,36 +15,62 @@ rl.on("line", function (input) {
 });
 
 function algorithmExe(inputArr) {
-  var dnaStr = inputArr[0].split("");
-  var n = Number(inputArr[1]);
-  var firstCG = 0;
-  for (let i = 0; i < n; i++) {
-    if (dnaStr[i] === "C" || dnaStr[i] === "G") firstCG++;
+  var itemNum = Number(inputArr[0]);
+  var cmdList = inputArr[1].split("");
+  var current = 1;
+  var page = [1, itemNum];
+  var mulPage = false;
+  if (itemNum > 4) {
+    page[1] = 4;
+    mulPage = true;
   }
-  var start = 0;
-  var cgRatio = [firstCG];
-  for (let i = 1; i < dnaStr.length - n; i++) {
-    var current = cgRatio[i - 1];
-    if (dnaStr[i - 1] === "C" || dnaStr[i - 1] === "G") {
-      current--;
+  for (let i = 0; i < cmdList.length; i++) {
+    const cmd = cmdList[i];
+    if (cmd === "U") {
+      if (current <= page[0]) {
+        if (page[0] === 1) {
+          current = itemNum;
+          page[1] = itemNum;
+          page[0] = mulPage ? itemNum - 3 : 1;
+        } else {
+          current--;
+          page[1]--;
+          page[0]--;
+        }
+      } else {
+        current--;
+      }
+    } else if (cmd === "D") {
+      if (current >= page[1]) {
+        if (page[1] === itemNum) {
+          current = 1;
+          page[1] = mulPage ? 4 : itemNum;
+          page[0] = 1;
+        } else {
+          current++;
+          page[1]++;
+          page[0]++;
+        }
+      } else {
+        current++;
+      }
     }
-    if (dnaStr[n - 1 + i] === "C" || dnaStr[n - 1 + i] === "G") {
-      current++;
-    }
-    cgRatio[i] = current;
   }
-  var max = -1;
-  for (let i = 0; i < cgRatio.length; i++) {
-    if (cgRatio[i] > max) {
-      max = cgRatio[i];
-      bigIndex = i;
+  if (mulPage) {
+    page.splice(1, 0, page[0] + 1, page[0] + 2);
+  } else {
+    for (let i = 1; i < itemNum - 1; i++) {
+      page.splice(i, 0, page[0] + 1);
     }
   }
-  console.log(dnaStr.slice(bigIndex, bigIndex + n).join(""));
+  console.log(page.join(" "));
+  console.log(current);
 }
 
-var testStr = "AACTGTGCACGACCTGA";
-
-// console.log(testStr.slice(6,11));
-algorithmExe(["AACTGTGCACGACCTGA", "5"]);
+// algorithmExe(["10", "UUUU"]);
+// algorithmExe(["4", "UUUU"]);
+algorithmExe([
+  "2",
+  "DUDUDDUUDUDDDDUDUDDDUUDDUDDUDUDUDDDUDUDUUDDUUDDUUUDUDUUUDDUDUDDUUDUDDDDUDUDUUDUDDDDDUU",
+]);
 process.exit();
