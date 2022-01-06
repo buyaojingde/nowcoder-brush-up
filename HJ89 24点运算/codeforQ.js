@@ -42,18 +42,14 @@ function extracOpe(ope) {
     case 1:
       return "-";
     case 2:
-      return "-";
-    case 3:
       return "*";
-    case 4:
-      return "/";
-    case 5:
+    case 3:
       return "/";
   }
 }
 
 function calc(a, b) {
-  return [a + b, a - b, b - a, a * b, a / b, b / a];
+  return [a + b, a - b, a * b, a / b];
 }
 function algorithmExe(inputArr) {
   var pukeNums = inputArr[0].split(" ").map((item) => puke2Num(item));
@@ -117,26 +113,11 @@ function logResult(a1, b1, c1, d1, ope1, ope2, ope3) {
   var b = num2Puke(b1);
   var c = num2Puke(c1);
   var d = num2Puke(d1);
-  var str = "";
-  if (ope1 === 2 || ope1 === 5) {
-    str = b + extracOpe(ope1) + a;
-  } else {
-    str = a + extracOpe(ope1) + b;
-  }
-  if (ope2 === 2 || ope2 === 5) {
-    str = c + extracOpe(ope2) + "(" + str + ")";
-  } else {
-    str = "(" + str + ")" + extracOpe(ope2) + c;
-  }
-
-  if (ope3 === 2 || ope3 === 5) {
-    str = d + extracOpe(ope3) + "(" + str + ")";
-  } else {
-    str = "(" + str + ")" + extracOpe(ope3) + d;
-  }
+  var str = a + extracOpe(ope1) + b + extracOpe(ope2) + c + extracOpe(ope3) + d;
   console.log(str);
 }
 // algorithmExe(["K Q 6 K"]);
 // algorithmExe(["4 2 K A"]);
-algorithmExe(["K Q 6 K"]);
+// algorithmExe(["K Q 6 K"]);
+algorithmExe(["4 4 2 7"]);
 process.exit();
