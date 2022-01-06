@@ -14,8 +14,18 @@ rl.on("line", function (input) {
   }
 });
 
+function puke2Num(str) {
+  var num = Number(str);
+  if (!isNaN(Number(str))) {
+    return num;
+  }
+  if (str === "J") return 11;
+  if (str === "Q") return 12;
+  if (str === "K") return 13;
+  if (str === "A") return 1;
+}
 function algorithmExe(inputArr) {
-  var puke = inputArr[0];
+  var pukeNums = inputArr[0].split(" ").map((item) => puke2Num(item));
 }
 algorithmExe(["K Q 6 K"]);
 process.exit();
