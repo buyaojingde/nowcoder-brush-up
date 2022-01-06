@@ -16,6 +16,12 @@ rl.on("line", function (input) {
 
 function algorithmExe(inputArr) {
   var fengzi = inputArr[0].split("/").map((item) => Number(item));
+  var aiji = [];
+  for (let i = 0; i < fengzi[0]; i++) {
+    var str = 1 +"/" + fengzi[1];
+    aiji.push(str);
+  }
+  console.log(aiji.join("+"));
 }
 
 algorithmExe(["8/11"]);
