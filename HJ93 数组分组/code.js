@@ -65,7 +65,7 @@ function findTarget(array, target, arraySum) {
     var rowNex = [];
     mat.push(rowNex);
   }
-  for (let i = 1; i < array.length / 2 + 1; i++) {
+  for (let i = 1; i < array.length / 2; i++) {
     mat[i] = [];
     for (let j = 0; j < mat[i - 1].length; j++) {
       var lastIndex = mat[i - 1][j][mat[i - 1][j].length - 1];
