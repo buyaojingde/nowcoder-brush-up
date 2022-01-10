@@ -1,7 +1,7 @@
 # nowcoder brush Up
 
 #### 介绍
-牛客网刷题（https://www.nowcoder.com/ta/huawei），用typescript
+牛客网刷题（https://www.nowcoder.com/ta/huawei），用js
 
 #### 软件架构
 软件架构说明
