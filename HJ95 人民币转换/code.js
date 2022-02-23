@@ -1,10 +1,5 @@
-/*
- *@description: NP问题，01背包，动态规划
- *@author: lianbo
- *@date: 2022-01-09 15:52:04
- */
 var readLine = require("readline");
-rl = readLine.createInterface({
+var rl = readLine.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
@@ -12,16 +7,14 @@ rl = readLine.createInterface({
 var lineNum = 1;
 var inputs = [];
 rl.on("line", function (input) {
-  inputs.push(input.trim());
+  inputs.push(input);
   if (inputs.length === lineNum) {
     algorithmExe(inputs);
     inputs = [];
   }
 });
 
-function algorithmExe(inputArr) {
-  var rmb = Number(inputArr[0]);
+var RMBStrArray = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖","拾","佰","仟","万","亿","元","角","分"];
+function algorithmExe(inputArr){
+  var doubleNum = inputArr[0];
 }
-
-algorithmExe(["151121.15"]);
-process.exit();
